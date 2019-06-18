@@ -1,4 +1,4 @@
-import util as util2
+import util
 #import features.util as util1
 
 from features.pos_tags import *
@@ -24,11 +24,11 @@ import pickle
 def main():
 
 	print ("Fetching data...")
-	train_df = util2.get_training_data('../data/training_set_rel3.tsv')
-	valid_df = util2.get_validation_data('../data/valid_set.tsv')
+	train_df = util.get_training_data('../data/training_set_rel3.tsv')
+	valid_df = util.get_validation_data('../data/valid_set.tsv')
 
 	print ("Standardizing scores...")
-	train_df, valid_df = util2.append_standardized_column(train_df, valid_df, 'score')	
+	train_df, valid_df = util.append_standardized_column(train_df, valid_df, 'score')	
 	
 	print ("Calculating perplexity feature...")
 
@@ -36,40 +36,40 @@ def main():
 
 	print ("Calculating number of sentences feature...")
 
-	train_df, valid_df = util2.fill_sentence_column(train_df, valid_df)
+	train_df, valid_df = util.fill_sentence_column(train_df, valid_df)
 	
 	print ("Cleaning for spelling and word count...")
 	# cleaned up data for spelling feature
-	vectorizer_train_spelling = util2.vectorizer_clean_spelling(train_df)
+	vectorizer_train_spelling = util.vectorizer_clean_spelling(train_df)
 	train_essays_spelling = vectorizer_train_spelling['essay'].values
-	vectorizer_valid_spelling = util2.vectorizer_clean_spelling(valid_df)
+	vectorizer_valid_spelling = util.vectorizer_clean_spelling(valid_df)
 	valid_essays_spelling = vectorizer_valid_spelling['essay'].values
     
 	print ("Calculating total words feature...")
 
-	train_df, valid_df = util2.fill_total_words_column(train_df, valid_df, train_essays_spelling, valid_essays_spelling)
+	train_df, valid_df = util.fill_total_words_column(train_df, valid_df, train_essays_spelling, valid_essays_spelling)
 
 	print ("Calculating unique words feature...")
 
-	train_df, valid_df = util2.fill_unique_words_column(train_df, valid_df, train_essays_spelling, valid_essays_spelling)
+	train_df, valid_df = util.fill_unique_words_column(train_df, valid_df, train_essays_spelling, valid_essays_spelling)
 
 	print ("Calculating spelling feature...")
 	# spelling feature
-	train_df, valid_df = util2.fill_spelling_column(train_df, valid_df, train_essays_spelling, valid_essays_spelling)
+	train_df, valid_df = util.fill_spelling_column(train_df, valid_df, train_essays_spelling, valid_essays_spelling)
 	
 	print ("Calculating pos tags features...")
 
-	train_df, valid_df = util2.fill_pos_columns(train_df, valid_df)
+	train_df, valid_df = util.fill_pos_columns(train_df, valid_df)
 
 	print ("Cleaning for TFIDF...")
 	# cleaned up data for tfidf vector feature
-	vectorizer_train = util2.vectorizer_clean(train_df)
+	vectorizer_train = util.vectorizer_clean(train_df)
 	train_essays = vectorizer_train['essay'].values
-	vectorizer_valid = util2.vectorizer_clean(valid_df)
+	vectorizer_valid = util.vectorizer_clean(valid_df)
 	valid_essays = vectorizer_valid['essay'].values
 
 	print ("Calculating TFIDF features with unigram...")
-	train_df, valid_df = util2.fill_tfidf_column(train_df, valid_df, train_essays, valid_essays, 1)
+	train_df, valid_df = util.fill_tfidf_column(train_df, valid_df, train_essays, valid_essays, 1)
 
 	#print "Calculating TFIDF features with trigram..."
 	#train_df, valid_df = fill_tfidf_column(train_df, valid_df, train_essays, valid_essays, 3)

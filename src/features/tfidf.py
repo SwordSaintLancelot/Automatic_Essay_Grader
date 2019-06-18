@@ -1,8 +1,8 @@
 import pandas as pd
-#import numpy as np
-#import re
+import numpy as np
+import re
 #import util
-#import string
+import string
 from sklearn.preprocessing import normalize
 
 from sklearn.feature_extraction.text import TfidfVectorizer

@@ -1,5 +1,5 @@
 import math
-import util
+#import util
 #from nltk import trigrams
 #from nltk import bigrams
 #from nltk import everygrams

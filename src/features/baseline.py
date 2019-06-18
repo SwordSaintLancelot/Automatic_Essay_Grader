@@ -25,8 +25,8 @@ def head_of_df(df, name):
 
 # Read in training data
 # Note that for essay set 2, score becomes average of 2 domain scores
-train_df = get_training_data('../../data/training_set_rel3.tsv')
-valid_df = get_validation_data('../../data/valid_set.tsv')
+train_df = get_training_data('E:\\GitHub\\deep-learning\\Automatic_Essay_Grader\\data\\training_set_rel3.tsv')
+valid_df = get_validation_data('E:\\GitHub\\deep-learning\\Automatic_Essay_Grader\\data\\valid_set.tsv')
 
 train_df, valid_df = append_standardized_column(train_df, valid_df, 'score')
 
