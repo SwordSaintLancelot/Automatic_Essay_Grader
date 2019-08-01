@@ -68,7 +68,7 @@ def get_validation_data(filename):
 	valid_df['score'] = pd.Series([0] * valid_df.shape[0], index=valid_df.index)
 
 	# scores are stored in separate data set, we'll put them in same one
-	valid_scores = pd.read_csv('../data/valid_sample_submission_5_column.csv', delimiter=',')
+	valid_scores = pd.read_csv('E:\\GitHub\\deep-learning\\Automatic_Essay_Grader\\data\\valid_sample_submission_5_column.csv', delimiter=',')
 
 	# put each score in our data set, and make sure to handle essay set 2
 	for i in range(valid_df.shape[0]):

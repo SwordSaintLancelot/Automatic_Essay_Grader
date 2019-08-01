@@ -4,7 +4,7 @@ from features.pos_tags import *
 from features.spelling import *
 from features.sentences import *
 from features.perplexity import *
-from features.tfidf_3gram import *
+from features.tfidf import *
 
 import pandas as pd
 import numpy as np
@@ -69,10 +69,10 @@ for i in range(1, max_essay_set+1):
 
 	best_score_ridge = np.max(ridge_scores)
 	best_alpha_ridge = alpha[np.argmax(ridge_scores)]
-	print "Linear (RIDGE alpha=" + str(best_alpha_ridge) +") for Essay Set "+str(i)+":", str(best_score_ridge)
-	print "\n"
+	print ("Linear (RIDGE alpha=" + str(best_alpha_ridge) +") for Essay Set "+str(i)+":", str(best_score_ridge))
+	print ("\n")
 
 	best_score_lasso = np.max(lasso_scores)
 	best_alpha_lasso = alpha[np.argmax(lasso_scores)]
-	print "Linear (LASSO alpha =" + str(best_alpha_lasso) + ") for Essay Set "+str(i)+":", str(best_score_lasso)
-	print "\n"
+	print ("Linear (LASSO alpha =" + str(best_alpha_lasso) + ") for Essay Set "+str(i)+":", str(best_score_lasso))
+	print ("\n")
