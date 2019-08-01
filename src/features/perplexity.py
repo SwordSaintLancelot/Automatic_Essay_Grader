@@ -1,9 +1,9 @@
 import math
-#import util
-#from nltk import trigrams
-#from nltk import bigrams
-#from nltk import everygrams
-#from collections import Counter
+import util
+from nltk import trigrams
+from nltk import bigrams
+from nltk import everygrams
+from collections import Counter
 from sklearn.feature_extraction.text import CountVectorizer
 
 # class that implements functionality for calculating perplexity of essay with Laplace smoothing
@@ -12,7 +12,7 @@ class Perplexity:
             self.num_words = None
             self.counts = None
             self.vectorizer = None
-
+        
 	def create_counts(self, compressed_essays):
 		self.vectorizer = CountVectorizer().fit(compressed_essays)
 		self.counts = self.vectorizer.transform(compressed_essays).toarray()[0]

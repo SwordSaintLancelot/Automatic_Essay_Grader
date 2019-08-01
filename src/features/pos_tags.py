@@ -1,7 +1,7 @@
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.probability import FreqDist
-#import util
+import util
 
 UNIV_TAGS = ['ADJ', 'ADP', 'ADV', 'CONJ', 'DET', 'NOUN', 'NUM', 'PRT', 'PRON', 'VERB', '.', 'X']
 

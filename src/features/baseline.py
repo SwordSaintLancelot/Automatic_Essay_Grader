@@ -1,7 +1,5 @@
-from util import get_training_data
-from util import get_validation_data
-from util import append_standardized_column
-
+#from util import *
+import util
 import matplotlib
 import matplotlib.pyplot as plt
 
@@ -25,10 +23,10 @@ def head_of_df(df, name):
 
 # Read in training data
 # Note that for essay set 2, score becomes average of 2 domain scores
-train_df = get_training_data('E:\\GitHub\\deep-learning\\Automatic_Essay_Grader\\data\\training_set_rel3.tsv')
-valid_df = get_validation_data('E:\\GitHub\\deep-learning\\Automatic_Essay_Grader\\data\\valid_set.tsv')
+train_df = util.get_training_data('E:\\GitHub\\deep-learning\\Automatic_Essay_Grader\\data\\training_set_rel3.tsv')
+valid_df = util.get_validation_data('E:\\GitHub\\deep-learning\\Automatic_Essay_Grader\\data\\valid_set.tsv')
 
-train_df, valid_df = append_standardized_column(train_df, valid_df, 'score')
+train_df, valid_df = util.append_standardized_column(train_df, valid_df, 'score')
 
 head_of_df(train_df, 'Head of Training Data Frame')
 

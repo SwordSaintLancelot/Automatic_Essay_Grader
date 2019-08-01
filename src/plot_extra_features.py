@@ -24,33 +24,33 @@ import pickle
 fig, ((ax1, ax2, ax5), (ax3, ax4, ax6)) = plt.subplots(2, 3)
 axes = [ax1, ax2, ax3, ax4, ax5, ax6]
 
-print ("Fetching data...")
+print "Fetching data..."
 train_df = util.get_training_data('../data/training_set_rel3.tsv')
 valid_df = util.get_validation_data('../data/valid_set.tsv')
 
-print ("Standardizing scores...")
+print "Standardizing scores..."
 train_df, valid_df = util.append_standardized_column(train_df, valid_df, 'score')   
 
-print ("Calculating perplexity feature...")
+print "Calculating perplexity feature..."
 train_df, valid_df = Perplexity().fill_perplexity_columns(train_df, valid_df)
 
-print ("Calculating number of sentences feature...")
+print "Calculating number of sentences feature..."
 train_df, valid_df = fill_sentence_column(train_df, valid_df)
 
-print ("Cleaning for spelling and word count...")
+print "Cleaning for spelling and word count..."
 # cleaned up data for spelling feature
 vectorizer_train_spelling = util.vectorizer_clean_spelling(train_df)
 train_essays_spelling = vectorizer_train_spelling['essay'].values
 vectorizer_valid_spelling = util.vectorizer_clean_spelling(valid_df)
 valid_essays_spelling = vectorizer_valid_spelling['essay'].values
 
-print ("Calculating total words feature...")
+print "Calculating total words feature..."
 train_df, valid_df = fill_total_words_column(train_df, valid_df, train_essays_spelling, valid_essays_spelling)
 
-print ("Calculating unique words feature...")
+print "Calculating unique words feature..."
 train_df, valid_df = fill_unique_words_column(train_df, valid_df, train_essays_spelling, valid_essays_spelling)
 
-print ("Calculating spelling feature...")
+print "Calculating spelling feature..."
 train_df, valid_df = fill_spelling_column(train_df, valid_df, train_essays_spelling, valid_essays_spelling)
 
 

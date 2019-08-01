@@ -38,7 +38,7 @@ def create_regularization_data(old_df):
 
 train_cols = ['essay_id', 'essay_set', 'essay', 'domain1_score', 'domain2_score']
 train_df = pd.read_csv('../../data/training_set_rel3.tsv', delimiter='\t', usecols=train_cols)
-for i in range(train_df.shape[0]):
+for i in xrange(train_df.shape[0]):
     if not np.isnan(train_df.get_value(i, 'domain2_score')):
         assert train_df.get_value(i, 'essay_set') == 2
         new_val = train_df.get_value(i, 'domain1_score') + train_df.get_value(i, 'domain2_score')
@@ -56,7 +56,7 @@ valid_df['score'] = pd.Series([0] * valid_df.shape[0], index=valid_df.index)
 # scores are stored in separate data set, we'll put them in same one
 valid_scores = pd.read_csv('../../data/valid_sample_submission_5_column.csv', delimiter=',')
 # put each score in our data set, and make sure to handle essay set 2
-for i in range(valid_df.shape[0]):
+for i in xrange(valid_df.shape[0]):
     dom1_predid = valid_df.get_value(i, 'domain1_predictionid')
     row = valid_scores[valid_scores['prediction_id'] == dom1_predid]
     score = row.get_value(row.index[0], 'predicted_score')
@@ -73,7 +73,7 @@ valid_df = valid_df.drop(['domain1_predictionid', 'domain2_predictionid'], axis=
 # cleaning returns essay with only lowercase words separated by space
 def vectorizer_clean(old_df):
     new_df = old_df.copy()
-    for i in range(new_df.shape[0]):
+    for i in xrange(new_df.shape[0]):
         new_df.set_value(i, 'essay', " ".join(re.sub('[^a-zA-Z\d\s]', '', new_df['essay'].iloc[i]).lower().split())) 
     return new_df
 
@@ -182,7 +182,7 @@ for i in range(len(valid_df)):
     if valid_df.iloc[i]['score'] == valid_df.iloc[i]['newly_predicted_scores_log_l1']:
         log_l1_count += 1
         
-print( "LOGISTIC L2 using Feature: Number of Sentences")
+print ("LOGISTIC L2 using Feature: Number of Sentences")
 print ("Number of correct predictions =", log_l2_count)
 print ("Total number of observations =", len(valid_df))
 print ("Score =", float(log_l2_count) / len(valid_df))

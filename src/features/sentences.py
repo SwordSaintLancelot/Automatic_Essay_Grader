@@ -1,6 +1,6 @@
 # IMPORT NECESSARY LIBRARIES
 import re
-#import util
+import util
 
 def sentences(par):
     split_sent = re.split(r'[.!?]+', par)
