@@ -7,3 +7,6 @@ See https://www.kaggle.com/c/asap-aes for info on data sets.  Particularly note 
 data/
 - Essay_Set_Descriptions/ gives the basic essay scoring system and methods, prompt, and basic statistics about the essay prompts.
 - Scoring_Guides_And_Examples/ provides a tighter breakdown on the scoring system with written examples.  Given the scope of this project, the written examples will almost certainly not be used, but reading through the scoring could give ideas on how to automatically grade an essay more appropriately.
+
+Above is the description for the original Essay Grader. The issues were to run it in python 3.7 and other minor problems.
+I have tried to make appropriate changes and now can run the project successfully in Python 3.7.
