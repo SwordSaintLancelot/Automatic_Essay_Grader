@@ -1,5 +1,5 @@
 from collections import Counter
-import util
+from features import util
 
 #####################################
 #COUNTING THE NUMBER OF UNIQUE WORDS#

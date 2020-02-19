@@ -1,4 +1,4 @@
-import util
+from features import util
 
 #####################################################
 #COUNTING THE NUMBER OF TOTAL WORDS#

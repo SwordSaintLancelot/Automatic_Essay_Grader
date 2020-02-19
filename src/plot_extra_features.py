@@ -9,6 +9,7 @@ from features.perplexity import Perplexity
 from features.tfidf import *
 from features.unique_words import *
 from features.total_words import *
+from features import *
 
 import pandas as pd
 import numpy as np
@@ -25,13 +26,13 @@ fig, ((ax1, ax2, ax5), (ax3, ax4, ax6)) = plt.subplots(2, 3)
 axes = [ax1, ax2, ax3, ax4, ax5, ax6]
 
 print ("Fetching data...")
-train_df = util.get_training_data('E:\\GitHub\\deep-learning\\Automatic_Essay_Grader\\data\\training_set_rel3.tsv')
-valid_df = util.get_validation_data('E:\\GitHub\\deep-learning\\Automatic_Essay_Grader\\data\\valid_set.tsv')
+train_df = util.get_training_data('../data/training_set_rel3.tsv')
+valid_df = util.get_validation_data('../data/valid_set.tsv')
 
 print ("Standardizing scores...")
 train_df, valid_df = util.append_standardized_column(train_df, valid_df, 'score')   
 
-print( "Calculating perplexity feature...")
+print ("Calculating perplexity feature...")
 train_df, valid_df = Perplexity().fill_perplexity_columns(train_df, valid_df)
 
 print ("Calculating number of sentences feature...")

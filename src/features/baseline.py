@@ -1,7 +1,8 @@
-#from util import *
-import util
+from util import *
+
 import matplotlib
 import matplotlib.pyplot as plt
+import os
 
 import pandas as pd
 import numpy as np
@@ -23,10 +24,11 @@ def head_of_df(df, name):
 
 # Read in training data
 # Note that for essay set 2, score becomes average of 2 domain scores
-train_df = util.get_training_data('E:\\GitHub\\deep-learning\\Automatic_Essay_Grader\\data\\training_set_rel3.tsv')
-valid_df = util.get_validation_data('E:\\GitHub\\deep-learning\\Automatic_Essay_Grader\\data\\valid_set.tsv')
+train_df = get_training_data('../../data/training_set_rel3.tsv')
+os.chdir(r'D:\Project_work\Automated-Essay-Grading-master\data')
+valid_df = get_validation_data(r'D:\Project_work\Automated-Essay-Grading-master\data\valid_set.tsv')
 
-train_df, valid_df = util.append_standardized_column(train_df, valid_df, 'score')
+train_df, valid_df = append_standardized_column(train_df, valid_df, 'score')
 
 head_of_df(train_df, 'Head of Training Data Frame')
 
@@ -72,7 +74,7 @@ def linear_fit_and_score(essay_set, vectorizer, name):
 	# My guess is we will want to denormalize these scores for quadratic weighted k
 	valid_pred_std_scores = regr.predict(valid_vectors)
 
-	print ("Linear for Essay Set "+str(essay_set)+" with "+name+":", Spearman(a = (valid_df[valid_df['essay_set'] == essay_set])["score"], b = valid_pred_std_scores))
+	print( "Linear for Essay Set "+str(essay_set)+" with "+name+":", Spearman(a = (valid_df[valid_df['essay_set'] == essay_set])["score"], b = valid_pred_std_scores))
 	print ("\n")
 
 # TfidfVectorizer with ngram=(1,1)

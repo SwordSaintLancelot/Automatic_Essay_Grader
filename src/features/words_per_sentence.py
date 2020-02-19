@@ -37,7 +37,7 @@ def create_regularization_data(old_df):
     return regularization_data
 
 train_cols = ['essay_id', 'essay_set', 'essay', 'domain1_score', 'domain2_score']
-train_df = pd.read_csv('../../data/training_set_rel3.tsv', delimiter='\t', usecols=train_cols)
+train_df = pd.read_csv('../../data/training_set_rel3.tsv', delimiter='\t', usecols=train_cols, encoding = 'ISO-8859-1')
 for i in range(train_df.shape[0]):
     if not np.isnan(train_df.get_value(i, 'domain2_score')):
         assert train_df.get_value(i, 'essay_set') == 2
@@ -50,7 +50,7 @@ regularization_data = create_regularization_data(train_df)
 train_df = append_regularized_scores(train_df)
 # Read in validation data
 valid_cols = ['essay_id', 'essay_set', 'essay', 'domain1_predictionid', 'domain2_predictionid']
-valid_df = pd.read_csv('../../data/valid_set.tsv', delimiter='\t', usecols=valid_cols)
+valid_df = pd.read_csv('../../data/valid_set.tsv', delimiter='\t', usecols=valid_cols, encoding = 'ISO-8859-1')
 valid_df['score'] = pd.Series([0] * valid_df.shape[0], index=valid_df.index)
 
 # scores are stored in separate data set, we'll put them in same one
